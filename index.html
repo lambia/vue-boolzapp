@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp</title>
+    <!-- Vue.js 3.3.8 -->
+    <script src="https://unpkg.com/vue@3.3.8/dist/vue.global.js"></script>
+    <!-- Application Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font awesome 6.4.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts: Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Boolzapp</h1>
+
+        <div id="wrapper">
+            <!-- Sezione SX: lista contatti -->
+            <div id="contacts">
+                <h2>Contatti:</h2>
+                <ul>
+                    <li v-for="conversazione,i in contacts" @click="selezionaChat(i)">
+                        <img class="avatar" :src="conversazione.avatar">
+                        {{ conversazione.name }}
+                    </li>
+                </ul>
+            </div>
+            <!-- Sezione DX: lista messaggi di una conversazione -->
+            <div id="conversation">
+                <h2>Conversazione:</h2>
+                <div>Scegli un contatto: <input v-model="conversazioneAttiva" type="number"></div> 
+                <ul>
+                    <li v-for="messaggio in this.contacts[this.conversazioneAttiva].messages">
+                        {{ messaggio.date }}: {{ messaggio.message }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -25,8 +25,9 @@
             <!-- Sezione SX: lista contatti -->
             <div id="contacts">
                 <h2>Contatti:</h2>
+                <input type="text" v-model="searchText" placeholder="Cerca..." @keyup="searchContact">
                 <ul>
-                    <li v-for="conversazione,i in contacts" @click="selezionaChat(i)">
+                    <li v-for="conversazione,i in contacts" v-show="conversazione.visible" @click="selezionaChat(i)">
                         <img class="avatar" :src="conversazione.avatar">
                         {{ conversazione.name }}
                     </li>

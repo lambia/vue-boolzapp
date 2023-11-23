@@ -1,10 +1,13 @@
 const { createApp } = Vue
 
-createApp({
+// permette di usare instance.dato oppure instance.metodo()
+const vue = createApp({
     data() {
         return {
             //conversazione attiva (indice dell'array contacts)
-            conversazioneAttiva: 1,
+            conversazioneAttiva: 0,
+            //testo da cercare nei contatti
+            searchText: "",
             //contacts: array di oggetti
             contacts: [
                 //contacts[x]: il singolo oggetto rappresenta una conversazione
@@ -12,7 +15,7 @@ createApp({
                     //contact[x].name: è il nome della persona della conversazione
                     name: 'Michele',
                     avatar: './img/avatar_1.jpg',
-                    visible: true,
+                    visible: false,
                     //contacts[x].messages: è un array di oggetti che rappresenta i messaggi scambiati
                     messages: [
                         //contacts[x].messages[y]: il singolo oggetto rappresenta un messaggio
@@ -171,7 +174,19 @@ createApp({
     },
     methods: {
         selezionaChat(n) {
-            console.log(n);
+            this.conversazioneAttiva = n;
+        },
+        searchContact() {
+            console.log("Cerca: ", this.searchText);
+
+            //cercare this.searchText all'interno della proprietà .name di ogni oggetto in this.contacts
+
+            //per ogni conversazione in this.contacts
+                //se conversazione.name == this.searchText
+                    //conversazione.visible = true
+                //altrimenti
+                    //conversazione.visible = false
+
         }
     },
     mounted() {
@@ -205,8 +220,8 @@ createApp({
         // console.log( this.contacts[0].messages );
 
         // cicliamo sull'array messaggi di una specifica conversazione (0)
-        this.contacts[0].messages.forEach(messaggio => {
-            console.log(messaggio.message);
-        });
+        // this.contacts[0].messages.forEach(messaggio => {
+        //     console.log(messaggio.message);
+        // });
     }
 }).mount('#app')
